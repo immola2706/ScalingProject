@@ -3,7 +3,7 @@ provider "aws" {
 	region = "us-east-1"
 }
 
-ddata "aws_ami" "jenkins-master" {
+data "aws_ami" "jenkins-master" {
   most_recent = true
   owners      = ["self"]
 
