@@ -1,8 +1,3 @@
-// use AWS terraform provider
-provider "aws" {
-	region = "us-east-1"
-}
-
 data "aws_ami" "jenkins-master" {
   most_recent = true
   owners      = ["self"]
