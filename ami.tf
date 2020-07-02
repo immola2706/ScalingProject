@@ -8,8 +8,8 @@ data "aws_ami" "jenkins-master" {
   owners      = ["self"]
 
   filter {
-    name   = "name"
-    values = ["jenkins-master-2.107.2"]
+	name   = "name"
+	values = ["jenkins-master-2.107.2"]
   }
 }
 
@@ -18,8 +18,8 @@ data "aws_ami" "jenkins-slave" {
   owners      = ["self"]
 
   filter {
-    name   = "name"
-    values = ["jenkins-slave"]
+	name   = "name"
+	values = ["jenkins-slave"]
   }
 }
 resource "aws_instance" "jenkins_master" {
@@ -30,45 +30,26 @@ resource "aws_instance" "jenkins_master" {
   subnet_id              = "${element(var.vpc_private_subnets, 0)}"
 
   root_block_device {
-    volume_type           = "gp2"
-    volume_size           = 30
-    delete_on_termination = false
+	volume_type           = "gp2"
+	volume_size           = 30
+	delete_on_termination = false
   }
 
   tags {
-    Name   = "jenkins_master"
-    Author = "mlabouardy"
-    Tool   = "Terraform"
+	Name   = "jenkins_master"
+	Author = "mlabouardy"
+	Tool   = "Terraform"
   }
 }
-data "aws_ami" "jenkins-master" {
-  most_recent = true
-  owners      = ["self"]
-
-  filter {
-    name   = "name"
-    values = ["jenkins-master-2.107.2"]
-  }
-}
-
-data "aws_ami" "jenkins-slave" {
-  most_recent = true
-  owners      = ["self"]
-
-  filter {
-    name   = "name"
-    values = ["jenkins-slave"]
-  }
-}
-resource "aws_route53_record" "jenkins_master" {
+resource "aws_route53_record" "masterdns" {
   zone_id = "${var.hosted_zone_id}"
   name    = "jenkins.slowcoder.com"
   type    = "A"
 
   alias {
-    name                   = "${aws_elb.jenkins_elb.dns_name}"
-    zone_id                = "${aws_elb.jenkins_elb.zone_id}"
-    evaluate_target_health = true
+	name                   = "${aws_elb.jenkins_elb.dns_name}"
+	zone_id                = "${aws_elb.jenkins_elb.zone_id}"
+	evaluate_target_health = true
   }
 }
 // Scale out
@@ -83,7 +64,7 @@ resource "aws_cloudwatch_metric_alarm" "high-cpu-jenkins-slaves-alarm" {
   threshold           = "80"
 
   dimensions {
-    AutoScalingGroupName = "${aws_autoscaling_group.jenkins_slaves.name}"
+	AutoScalingGroupName = "${aws_autoscaling_group.jenkins_slaves.name}"
   }
 
   alarm_description = "This metric monitors ec2 cpu utilization"
@@ -110,7 +91,7 @@ resource "aws_cloudwatch_metric_alarm" "low-cpu-jenkins-slaves-alarm" {
   threshold           = "20"
 
   dimensions {
-    AutoScalingGroupName = "${aws_autoscaling_group.jenkins_slaves.name}"
+	AutoScalingGroupName = "${aws_autoscaling_group.jenkins_slaves.name}"
   }
 
   alarm_description = "This metric monitors ec2 cpu utilization"
