@@ -33,5 +33,10 @@
             "script" : "./setup.sh",
             "execute_command" : "sudo -E -S sh '{{ .Path }}'"
         }
+        {
+            "type" : "shell",
+            "script" : "./build.sh",
+            "execute_command" : "sudo -E -S sh '{{ .Path }}'"
+        }
     ]
 }
