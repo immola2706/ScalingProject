@@ -1,7 +1,7 @@
 {
     "variables" : {
         "region" : "us-east-1",
-        "source_ami" : "ami-09d95fab7fff3776c",
+        "source_ami" : "ami-09d95fab7fff3776c"
     },
     "builders" : [
         {
