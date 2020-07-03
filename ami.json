@@ -24,11 +24,6 @@
     ],
     "provisioners" : [
         {
-            "type" : "file",
-            "source" : "COPY FILES",
-            "destination" : "COPY FILES"
-        },
-        {
             "type" : "shell",
             "script" : "./setup.sh",
             "execute_command" : "sudo -E -S sh '{{ .Path }}'"
