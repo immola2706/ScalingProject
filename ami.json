@@ -10,8 +10,8 @@
             "type" : "amazon-ebs",
             "profile" : "default",
             "region" : "{{user `region`}}",
-            "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
-            "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+            "aws_access_key": "AKIA5WCXS3WU3RFRR5GF",
+            "aws_secret_key": "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",
             "instance_type" : "t2.micro",
             "source_ami" : "{{user `source_ami`}}",
             "ssh_username" : "ec2-user",
@@ -22,7 +22,7 @@
             },
             "tags" : {
                 "Tool" : "Packer",
-                "Author" : "mlabouardy"
+                "Author" : "Immola"
             }
         }
     ],
