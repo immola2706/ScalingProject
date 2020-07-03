@@ -1,7 +1,10 @@
 {
     "variables" : {
         "region" : "us-east-1",
-        "source_ami" : "ami-09d95fab7fff3776c"
+        "source_ami" : "ami-09d95fab7fff3776c",
+        "aws_access_key" : "{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_key" : "{{env `AWS_SECRET_KEY_ID`}}"
+
     },
     "builders" : [
         {
@@ -10,6 +13,8 @@
             "region" : "{{user `region`}}",
             "instance_type" : "t2.micro",
             "source_ami" : "{{user `source_ami`}}",
+            "aws_access_key" : "{{user `AWS_ACCESS_KEY_ID`}}",
+            "aws_secret_key" : "{{user `AWS_SECRET_KEY_ID`}}",
             "ssh_username" : "ec2-user",
             "ami_name" : "jenkins-master-2.107.2",
             "ami_description" : "Amazon Linux Image with Jenkins Server",
